@@ -1,0 +1,97 @@
+{% extends 'app_authenticated.html' %}
+{% block title %}Webhook Debugger{% endblock %}
+{% block content %}
+    <style>
+        #table_of_contents {float:right; width:25%; margin:10px 10px 0 0; background-color:#efe;}
+        .webhook_container {width:70%; margin:10px 1% 10px 3%; background-color:#eef; padding: 10px;}
+    </style>
+
+    <h1>Webhooks</h1>
+    <div id='table_of_contents'>
+        <h4>Table of Contents</h4>
+        {% if config.responses|length > 0 %}
+            {% for webhook in config.responses %}
+                <div><a href='#webhook_id_{{loop.index}}'> &gt;
+                    {% if webhook.parsed is string %}
+                      TEST ONLY
+                    {% else %}
+                      {{ webhook.parsed.kind.upper() }}
+                    {% endif %}
+                    : {{ webhook.received_at }}</a></div>
+            {% endfor %}
+        {% else %}
+            Empty
+        {% endif %}
+
+    </div>
+    {% if config.responses|length > 0 %}
+        {% for webhook in config.responses %}
+           <div class='webhook_container'>
+             <div id='webhook_id_{{ loop.index }}' class='value_timestamp'><b>Timestamp:</b> {{ webhook['received_at'] }}</div>
+             <div id="accordion_{{ loop.index }}" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ loop.index }}_raw" aria-expanded="false" aria-controls="collapseOne">
+                            Raw:
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse_{{ loop.index }}_raw" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="headingOne">
+                    <pre>{{ webhook.raw }}</pre>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ loop.index }}_parsed" aria-expanded="false" aria-controls="collapseOne">
+                            Parsed XML:
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse_{{ loop.index }}_parsed" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="headingOne">
+                    <pre>{{ webhook.xml }}</pre>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapse_{{ loop.index }}_object" aria-expanded="false" aria-controls="collapseOne">
+                            Object:
+                        </a>
+                    </div>
+                </div>
+                <div id="collapse_{{ loop.index }}_object" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="headingOne">
+                    <pre>{{ webhook.parsed }}</pre>
+                </div>
+            </div>
+          </div>
+        {% endfor %}
+    {% else %}
+        No Cached Webhooks
+    {% endif %}
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
+  <script>
+$(function() {
+
+    var $sidebar   = $("#table_of_contents"),
+        $window    = $(window),
+        offset     = $sidebar.offset(),
+        topPadding = 15;
+
+    $window.scroll(function() {
+        if ($window.scrollTop() > offset.top) {
+            $sidebar.stop().animate({
+                marginTop: $window.scrollTop() - offset.top + topPadding
+            });
+        } else {
+            $sidebar.stop().animate({
+                marginTop: 0
+            });
+        }
+    });
+});
+  </script>
+{% endblock %}

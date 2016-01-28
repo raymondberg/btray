@@ -1,0 +1,26 @@
+{% extends 'app_authenticated.html' %}
+{% block title %} Webhook Configs {% endblock %}
+{% block content %}
+    <h3>Welcome to your dashboard, {{ current_user.username }} !</h3>
+    {% for webhook_config in current_user.webhook_configs %}
+      <div class='config' style='border:1px solid black; margin:20px'>
+        <div style='float:right;clear:right'>
+          <div>Braintree Merchant: {{ webhook_config.bt_merchant_id }}</div>
+          <div>Braintree Public Key: {{ webhook_config.bt_public_key }}</div>
+          <div>
+            <a href="/configs/{{ webhook_config.webhook_config_id }}/">
+              View Webhook Activity
+            </a>
+          </div>
+          <div> Webhook URL:
+            <a href="/endpoints/{{ webhook_config.unique_id }}">
+              http://btray.pythonanywhere.com/endpoint/{{ webhook_config.unique_id }}
+            </a>
+          </div>
+        </div>
+        <h2> {{ webhook_config.name }}</h2>
+        <div style='clear:both'></div>
+      </div>
+    {% endfor %}
+{% endblock %}
+
