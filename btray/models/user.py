@@ -1,6 +1,7 @@
 from btray import db
-class User(db.Model):
+from btray.models.webhook_config import WebhookConfig
 
+class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True)
     email = db.Column(db.String(120), unique=True)
@@ -22,6 +23,11 @@ class User(db.Model):
 
     def get_id(self):
         return str(self.user_id)
+
+    def add_webhook_config(self, webhook):
+        self.webhook_configs.append(webhook)
+        db.session.commit()
+        return webhook
 
     @staticmethod
     def is_authenticated():

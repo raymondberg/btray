@@ -3,7 +3,7 @@ from flask.ext.login import login_required, login_user, logout_user, current_use
 
 from btray import app, db
 from btray.models import WebhookConfig
-from btray.forms import LoginForm
+from btray.forms import LoginForm, WebhookConfigForm
 
 ## Public App Routes
 ####################################################################
@@ -61,6 +61,17 @@ def configs_show(webhook_config_id):
         return Response(status=404)
     return render_template('configs_show.html', config=config)
 
+@app.route('/configs/new', methods=['POST','GET'])
+@login_required
+def configs_new():
+    form = WebhookConfigForm(user=current_user)
+    if form.validate_on_submit():
+        return redirect(url_for(
+            'configs_show',
+            webhook_config_id=form.webhook_config.webhook_config_id
+        ))
+    return render_template('configs_new.html', form=form)
+
 @app.route('/endpoints/<webhook_config_unique_id>/', methods=['GET'])
 @login_required
 def webhook_helper(webhook_config_unique_id):
@@ -68,4 +79,3 @@ def webhook_helper(webhook_config_unique_id):
     if config is None: return Response(status=404)
 
     return render_template('endpoint_helper.html')
-

@@ -2,17 +2,22 @@
 {% block title %} Webhook Configs {% endblock %}
 {% block content %}
     <h3>Welcome to your dashboard, {{ current_user.username }} !</h3>
+    <div><a href='/configs/new'>Create New</a></div>
     {% for webhook_config in current_user.webhook_configs %}
       <div class='config' style='border:1px solid black; margin:20px'>
         <div style='float:right;clear:right'>
-          <div>Braintree Merchant: {{ webhook_config.bt_merchant_id }}</div>
-          <div>Braintree Public Key: {{ webhook_config.bt_public_key }}</div>
+          {% if webhook_config.notes %}
+            <div>{{ webhook_config.notes }}</div>
+            <div></div>
+          {% endif %}
+          <div><b>Braintree Merchant</b>: {{ webhook_config.bt_merchant_id }}</div>
+          <div><b>Braintree Public Key</b>: {{ webhook_config.bt_public_key }}</div>
           <div>
             <a href="/configs/{{ webhook_config.webhook_config_id }}/">
               View Webhook Activity
             </a>
           </div>
-          <div> Webhook URL:
+          <div><b>Webhook URL</b>:
             <a href="/endpoints/{{ webhook_config.unique_id }}">
               http://btray.pythonanywhere.com/endpoint/{{ webhook_config.unique_id }}
             </a>

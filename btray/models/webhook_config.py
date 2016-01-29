@@ -10,6 +10,7 @@ class WebhookConfig(db.Model):
     webhook_config_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     name = db.Column(db.String(25), nullable=False)
+    notes = db.Column(db.Text)
     unique_id = db.Column(db.String(700), unique=True, nullable=False)
     bt_merchant_id = db.Column(db.String(16))
     bt_public_key = db.Column(db.String(16))
@@ -17,11 +18,12 @@ class WebhookConfig(db.Model):
 
     responses = db.relationship('WebhookResponse', backref='webhook_config')
 
-    def __init__(self, name, bt_merchant_id, bt_public_key, bt_private_key):
+    def __init__(self, name, bt_merchant_id, bt_public_key, bt_private_key, notes=None):
         self.name = name
         self.bt_merchant_id = bt_merchant_id
         self.bt_public_key = bt_public_key
         self.bt_private_key = bt_private_key
+        self.notes = notes
         self.unique_id = self._generate_unique_id()
 
     def parse_webhook_response(self, raw, signature, process_only=False):

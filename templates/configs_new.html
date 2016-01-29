@@ -1,0 +1,22 @@
+{% extends 'app_public.html' %}
+{% block title %} Webhook Configs {% endblock %}
+{% block content %}
+
+<form method="post" action="/configs/new">
+    {{ form.csrf_token }}
+    <table>
+    {% for field in form %}
+      {% if field.name != 'csrf_token' %}
+      <tr>
+        <td>{{ field.label }}</td><td>{{ field(class="css_class") }}
+        {% if field.errors %}
+            <ul class="errors">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</ul>
+        {% endif %}
+        </td>
+      </tr>
+      <tr><td>&nbsp;</td><td></td></tr>
+      {% endif %}
+    {% endfor %}
+    </table>
+</form>
+{% endblock %}
