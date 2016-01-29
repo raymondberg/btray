@@ -11,7 +11,7 @@ class WebhookConfig(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
     name = db.Column(db.String(25), nullable=False)
     notes = db.Column(db.Text)
-    unique_id = db.Column(db.String(700), unique=True, nullable=False)
+    unique_id = db.Column(db.String(64), unique=True, nullable=False)
     bt_merchant_id = db.Column(db.String(16))
     bt_public_key = db.Column(db.String(16))
     bt_private_key = db.Column(db.String(32))
