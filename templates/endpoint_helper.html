@@ -1,7 +1,7 @@
 {% extends 'app_authenticated.html' %}
 {% block title %} Users {% endblock %}
 {% block content %}
-Cool! You've got your endpoint ready to go. Now you just need to go to your Braintree control panel and add this url as a webhook for the webhooks you want to preview.
-
+<p>Cool! You've got your endpoint ready to go. Now you just need to go to your Braintree control panel and set up your webhooks to point at this url:</p>
+<div class="well"> http://btray.pythonanywhere.com{{ request.path }} </div>
 {% endblock %}
 

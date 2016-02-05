@@ -1,11 +1,10 @@
 {% extends 'app_authenticated.html' %}
 {% block title %} Webhook Configs {% endblock %}
+{% block header %} Current Webhook Endpoints {% endblock %}
 {% block content %}
-    <h3>Welcome to your dashboard, {{ current_user.username }} !</h3>
-    <div><a href='/configs/new'>Create New</a></div>
     {% for webhook_config in current_user.webhook_configs %}
-      <div class='config' style='border:1px solid black; margin:20px'>
-        <div style='float:right;clear:right'>
+      <div class='webhook_summary' style='border:1px solid black; margin:20px'>
+        <div class='webhook_attributes' style='float:right;clear:right'>
           {% if webhook_config.notes %}
             <div>{{ webhook_config.notes }}</div>
             <div></div>
@@ -23,7 +22,7 @@
             </a>
           </div>
         </div>
-        <h2> {{ webhook_config.name }}</h2>
+        <h2 class='webhook_name'> {{ webhook_config.name }}</h2>
         <div style='clear:both'></div>
       </div>
     {% endfor %}

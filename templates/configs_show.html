@@ -1,32 +1,38 @@
 {% extends 'app_authenticated.html' %}
 {% block title %}Webhook Debugger{% endblock %}
+{% block header %}
+  Webhook Calls : 
+  {{ config.name }}
+  <a href='{{ url_for('configs_delete', webhook_config_id=config.webhook_config_id) }}'>delete</a>
+{% endblock %}
 {% block content %}
     <style>
-        #table_of_contents {float:right; width:25%; margin:10px 10px 0 0; background-color:#efe;}
-        .webhook_container {width:70%; margin:10px 1% 10px 3%; background-color:#eef; padding: 10px;}
+        #table_of_contents {float:right; width:25%; margin:0 10px 0 0;}
+        .webhook_container {width:70%; margin:10px 1% 10px 3%; padding: 10px;}
     </style>
-
-    <h1>Webhooks</h1>
     <div id='table_of_contents'>
-        <h4>Table of Contents</h4>
-        {% if config.responses|length > 0 %}
-            {% for webhook in config.responses %}
-                <div><a href='#webhook_id_{{loop.index}}'> &gt;
-                    {% if webhook.parsed is string %}
-                      TEST ONLY
-                    {% else %}
-                      {{ webhook.parsed.kind.upper() }}
-                    {% endif %}
-                    : {{ webhook.received_at }}</a></div>
-            {% endfor %}
-        {% else %}
-            Empty
-        {% endif %}
-
+      <div class="panel panel-default">
+          <div class="panel-body">
+          <h4>Table of Contents</h4>
+          {% if config.responses|length > 0 %}
+              {% for webhook in config.responses %}
+                  <div><a href='#webhook_id_{{loop.index}}'> &gt;
+                      {% if webhook.parsed is string %}
+                        TEST ONLY
+                      {% else %}
+                        {{ webhook.parsed.kind.upper() }}
+                      {% endif %}
+                      : {{ webhook.received_at }}</a></div>
+              {% endfor %}
+          {% else %}
+              Empty
+          {% endif %}
+        </div>
+      </div>
     </div>
     {% if config.responses|length > 0 %}
         {% for webhook in config.responses %}
-           <div class='webhook_container'>
+           <div class='webhook_container panel panel-default'>
              <div id='webhook_id_{{ loop.index }}' class='value_timestamp'><b>Timestamp:</b> {{ webhook['received_at'] }}</div>
              <div id="accordion_{{ loop.index }}" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
