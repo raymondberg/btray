@@ -65,7 +65,7 @@ def configs_show(webhook_config_id):
 @login_required
 def configs_new():
     form = WebhookConfigForm(user=current_user)
-    if form.validate_on_submit():
+    if form.validate_on_submit() and form.webhook_config.webhook_config_id is not None:
         return redirect(url_for(
             'configs_show',
             webhook_config_id=form.webhook_config.webhook_config_id

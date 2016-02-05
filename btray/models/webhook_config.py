@@ -16,7 +16,10 @@ class WebhookConfig(db.Model):
     bt_public_key = db.Column(db.String(16))
     bt_private_key = db.Column(db.String(32))
 
-    responses = db.relationship('WebhookResponse', backref='webhook_config', cascade='delete')
+    responses = db.relationship('WebhookResponse',
+        backref='webhook_config',
+        cascade='save-update, delete'
+    )
 
     def __init__(self, name, bt_merchant_id, bt_public_key, bt_private_key, notes=None):
         self.name = name
