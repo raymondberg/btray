@@ -1,5 +1,5 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField, SubmitField, TextAreaField, validators, ValidationError
+from wtforms import TextField, PasswordField, SubmitField, TextAreaField, HiddenField, validators, ValidationError
 from sqlalchemy.exc import IntegrityError
 
 from btray.models import User, WebhookConfig
@@ -91,3 +91,13 @@ class WebhookConfigForm(Form):
             return False
 
         return True
+
+class WebhookConfigDeleteForm(Form):
+    webhook_config_id = HiddenField('WebhookConfigID', [validators.Required()])
+    submit = SubmitField('Yes, I promise you can delete it')
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+
+        self.url_config_id = kwargs['webhook_config_id']
+        self.webhook_config = WebhookConfig.get(self.url_config_id, kwargs['user'])

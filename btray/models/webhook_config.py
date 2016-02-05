@@ -16,7 +16,7 @@ class WebhookConfig(db.Model):
     bt_public_key = db.Column(db.String(16))
     bt_private_key = db.Column(db.String(32))
 
-    responses = db.relationship('WebhookResponse', backref='webhook_config')
+    responses = db.relationship('WebhookResponse', backref='webhook_config', cascade='delete')
 
     def __init__(self, name, bt_merchant_id, bt_public_key, bt_private_key, notes=None):
         self.name = name
@@ -74,6 +74,10 @@ class WebhookConfig(db.Model):
         ).first()
 
     @classmethod
+    def delete(cls, webhook_config):
+        db.session.delete(webhook_config)
+        db.session.commit()
+
+    @classmethod
     def get_by_unique_id(cls, webhook_config_unique_id):
         return WebhookConfig.query.filter(WebhookConfig.unique_id == webhook_config_unique_id).first()
-

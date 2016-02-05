@@ -1,0 +1,15 @@
+{% extends 'app_public.html' %}
+{% block title %} Webhook Configs {% endblock %}
+{% block content %}
+<form method="post" action="/configs/{{ form.url_config_id }}/delete">
+    {{ form.csrf_token }}
+    <h2>Are you sure?</h2>
+    <div>Are you sure you want to delete webhook config with the id {{ form.url_config_id }}?
+      {{ form.webhook_config_id }}
+    </div>
+    <div>
+      {{ form.submit() }}
+    <a href="..">Cancel</a>
+    </div>
+</form>
+{% endblock %}
