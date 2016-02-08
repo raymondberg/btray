@@ -76,8 +76,8 @@ def configs_new():
     form = WebhookConfigForm(user=current_user)
     if form.validate_on_submit() and form.webhook_config.webhook_config_id is not None:
         return redirect(url_for(
-            'configs_show',
-            webhook_config_id=form.webhook_config.webhook_config_id
+            'webhook_helper',
+            webhook_config_unique_id=form.webhook_config.unique_id
         ))
     return render_template('configs_new.html', form=form)
 
