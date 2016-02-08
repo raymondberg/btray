@@ -1,6 +1,13 @@
 {% extends 'app_authenticated.html' %}
 {% block title %} Webhook Configs {% endblock %}
-{% block header %} Current Webhook Endpoints {% endblock %}
+{% block header %} Current Webhook Endpoints
+<a style="padding-left:25px" href="/configs/new">
+  <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    New Endpoint
+  </button>
+</a>
+{% endblock %}
+
 {% block content %}
   {% if current_user.webhook_configs %}
     {% for webhook_config in current_user.webhook_configs %}
