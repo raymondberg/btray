@@ -3,5 +3,7 @@
 {% block content %}
 <p>Cool! You've got your endpoint ready to go. Now you just need to go to your Braintree control panel and set up your webhooks to point at this url:</p>
 <div class="well"> https://btray.pythonanywhere.com{{ request.path }} </div>
+<p>Once you get your webhook settings just the way you like them in the control panel,
+head over to <a href="{{url_for('configs_show', webhook_config_id=webhook.webhook_config_id)}}">the details page for this webhook</a> to see what activity you've got!</p>
 {% endblock %}
 

@@ -100,4 +100,4 @@ def webhook_helper(webhook_config_unique_id):
     config = WebhookConfig.get_by_unique_id(webhook_config_unique_id)
     if config is None: return Response(status=404)
 
-    return render_template('endpoint_helper.html')
+    return render_template('endpoint_helper.html', webhook=config)

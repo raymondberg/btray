@@ -2,6 +2,7 @@
 {% block title %} Webhook Configs {% endblock %}
 {% block header %} Current Webhook Endpoints {% endblock %}
 {% block content %}
+  {% if current_user.webhook_configs %}
     {% for webhook_config in current_user.webhook_configs %}
       <div class='webhook_summary' style='border:1px solid black; margin:20px'>
         <div class='webhook_attributes' style='float:right;clear:right'>
@@ -26,5 +27,8 @@
         <div style='clear:both'></div>
       </div>
     {% endfor %}
+  {% else %}
+    <p>Hmmm...it doesn't look like you've set up any webhook configurations yet. Why not <a href="{{url_for('configs_new')}}">give it a shot?</a></p>
+  {% endif %}
 {% endblock %}
 

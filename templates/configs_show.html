@@ -30,9 +30,9 @@
         </div>
       </div>
     </div>
+    <div class='webhook_container panel panel-default'>
     {% if config.responses|length > 0 %}
         {% for webhook in config.responses %}
-           <div class='webhook_container panel panel-default'>
              <div id='webhook_id_{{ loop.index }}' class='value_timestamp'><b>Timestamp:</b> {{ webhook['received_at'] }}</div>
              <div id="accordion_{{ loop.index }}" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
@@ -68,11 +68,11 @@
                     <pre>{{ webhook.parsed }}</pre>
                 </div>
             </div>
-          </div>
         {% endfor %}
     {% else %}
-        No Cached Webhooks
+    <div class="alert alert-warning"><p>Well that's a fine how-dya-do...No webhook calls! You should try generating a few in your Braintree control panel.</p><p>The best way to start is to "Check URL" on your webhook configuration. That should send a test webhook!</p></div>
     {% endif %}
+    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
