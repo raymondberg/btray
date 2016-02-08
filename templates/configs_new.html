@@ -9,12 +9,17 @@
       {% if field.name != 'csrf_token' %}
       <tr>
         <td>{{ field.label }}</td><td>{{ field(class="css_class") }}
-        {% if field.errors %}
-            <ul class="errors">{% for error in field.errors %}<li>{{ error }}</li>{% endfor %}</ul>
-        {% endif %}
         </td>
       </tr>
-      <tr><td>&nbsp;</td><td></td></tr>
+      <tr>
+        <td colspan="2">
+            {% for error in field.errors %}
+              <div class="alert alert-danger">
+                {{ error }}
+              </div>
+            {% endfor %}
+        </td>
+      </tr>
       {% endif %}
     {% endfor %}
     </table>
