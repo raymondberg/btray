@@ -4,12 +4,12 @@
   Webhook Calls : 
   {{ config.name }}
   <a style="padding-left:25px" onclick="alert('Coming Soon!');">
-    <button type="button" class="btn btn-warning" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-warning">
       Clear
     </button>
   </a>
-    <a style="padding-left:5px" href='{{ url_for('configs_delete', webhook_config_id=config.webhook_config_id) }}'>
-    <button type="button" class="btn btn-danger" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+  <a style="padding-left:5px" href='{{ url_for('configs_delete', webhook_config_id=config.webhook_config_id) }}'>
+    <button type="button" class="btn btn-danger">
       Delete
     </button>
   </a>
