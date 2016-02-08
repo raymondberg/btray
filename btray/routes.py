@@ -5,6 +5,15 @@ from btray import app, db
 from btray.models import WebhookConfig
 from btray.forms import LoginForm, WebhookConfigForm, WebhookConfigDeleteForm
 
+
+## Pre Handlers
+####################################################################
+@app.before_request
+def before_request():
+    if request.url.startswith('http://') and app.config['ENVIRONMENT'] == "production":
+        url = request.url.replace('http://', 'https://', 1)
+        return redirect(url, code=301)
+
 ## Public App Routes
 ####################################################################
 @app.route('/')
