@@ -11,6 +11,8 @@ class WebhookResponse(db.Model):
     xml = db.Column(db.Text)
     parsed = db.Column(db.Text)
     received_at = db.Column(db.DateTime)
+    kind = db.Column(db.String("25"), nullable=False)
+
     fk_webhook_config_id = db.Column(db.Integer, db.ForeignKey('webhook_config.webhook_config_id'), nullable=False)
 
     def __init__(self, raw, signature, parsed_object):
@@ -20,9 +22,9 @@ class WebhookResponse(db.Model):
         self.parsed = str(parsed_object)
         self.received_at = datetime.datetime.now(tz=pytz.timezone("UTC"))
         try:
-            self.kind = self.parsed.kind
+            self.kind = parsed_object.kind
         except Exception:
-            self.kind = "Unknown"
+            self.kind = 'unknown'
 
     @staticmethod
     def _payload_to_xml(payload):

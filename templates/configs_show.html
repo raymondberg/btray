@@ -26,12 +26,9 @@
           {% if config.responses|length > 0 %}
               {% for webhook in config.responses %}
                   <div><a href='#webhook_id_{{loop.index}}'> &gt;
-                      {% if webhook.parsed is string %}
-                        TEST ONLY
-                      {% else %}
-                        {{ webhook.parsed.kind.upper() }}
-                      {% endif %}
-                      : {{ webhook.received_at }}</a></div>
+                    {{ webhook.kind.upper() }}
+                    : {{ webhook.received_at }}</a>
+                </div>
               {% endfor %}
           {% else %}
               Empty
@@ -42,7 +39,7 @@
     <div class='webhook_container panel panel-default'>
     {% if config.responses|length > 0 %}
         {% for webhook in config.responses %}
-             <div id='webhook_id_{{ loop.index }}' class='value_timestamp'><b>Timestamp:</b> {{ webhook['received_at'] }}</div>
+        <div id='webhook_id_{{ loop.index }}' class='value_timestamp'><b>Timestamp:</b> {{ webhook.received_at }}</div>
              <div id="accordion_{{ loop.index }}" role="tablist" aria-multiselectable="true">
                 <div class="panel panel-default">
                     <div class="panel-heading" role="tab" id="headingOne">
