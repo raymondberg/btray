@@ -1,5 +1,11 @@
 from flask_wtf import Form
-from wtforms import TextField, PasswordField, SubmitField, TextAreaField, HiddenField, validators, ValidationError
+from wtforms import BooleanField
+from wtforms import HiddenField
+from wtforms import PasswordField
+from wtforms import SubmitField
+from wtforms import TextAreaField
+from wtforms import TextField
+from wtforms import validators, ValidationError
 from sqlalchemy.exc import IntegrityError
 
 from btray.models import User, WebhookConfig
@@ -65,6 +71,22 @@ class WebhookConfigForm(Form):
         [
             validators.Required(),
             validators.Regexp(re.compile('^[a-zA-Z0-9]+$')),
+        ]
+    )
+
+    is_sandbox = BooleanField(
+        'I affirm that these credentials are SANDBOX credentials',
+        [
+            validators.Required(),
+            validators.AnyOf([True]),
+        ]
+    )
+
+    is_mine = BooleanField(
+        'I affirm that I have personally disabled every single permission for these credentials (e.g. Webhook Only Role)',
+        [
+            validators.Required(),
+            validators.AnyOf([True]),
         ]
     )
 
