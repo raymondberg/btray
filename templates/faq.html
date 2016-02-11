@@ -1,0 +1,31 @@
+{% extends 'app_authenticated.html' %}
+{% block title %}Webhook Debugger{% endblock %}
+{% block header %} Frequently Asked Questions {% endblock %}
+{% block content %}
+
+<h3>What is this?</h3>
+<p> Okay, fair question. btray is a tool that helps you test out Braintree Webhooks! It acts as a catcher for webhook settings you create in your Braintree Sandbox.</p>
+
+<h3>How do I get started?</h3>
+<p> Really simple:</p>
+
+<ol>
+  <li>In Braintree Gateway:</li>
+  <ol>
+    <li>Set up a Webhooks-Only role in your Sandbox gateway (uncheck every permission)</li>
+    <li>Create a new user that has the Webhooks-Only role</li>
+    <li>Get the merchant id, public key, and private key from the API Keys for that user</li>
+  </ol>
+  <li>In btray:</li>
+    <ol>
+      <li>Create a webhook config with the API credentials you grabbed from the gateway. (Name/note it something memorable) </li>
+      <li>Copy the endpoint url for your webhook config.</li>
+    </ol>
+  <li>In Braintree Gateway:</li>
+  <ol>
+    <li>Create a new webhook setup that points to your endpoint url from btray</li>
+    <li>Generate some webhooks! Click the test url to make sure you get a 200 OK, then generate subscription events or whatever else you want.</li>
+  </ol>
+  <li>Go look at your pretty webhooks in btray!</li>
+</ol>
+{% endblock %}

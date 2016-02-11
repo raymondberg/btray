@@ -57,6 +57,10 @@ def webhook_receiver(webhook_config_unique_id):
 
 ## Private App Routes
 ####################################################################
+@app.route("/faq/")
+def show_faq():
+    return render_template('faq.html')
+
 @app.route('/configs/')
 @login_required
 def configs_list():
