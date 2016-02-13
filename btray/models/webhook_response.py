@@ -11,7 +11,7 @@ class WebhookResponse(db.Model):
     xml = db.Column(db.Text)
     parsed = db.Column(db.Text)
     received_at = db.Column(db.DateTime)
-    kind = db.Column(db.String("25"), nullable=False)
+    kind = db.Column(db.String(25), nullable=False)
 
     fk_webhook_config_id = db.Column(db.Integer, db.ForeignKey('webhook_config.webhook_config_id'), nullable=False)
 
