@@ -1,9 +1,11 @@
-MYSQL_USERNAME = 'my_username'
-MYSQL_PASSWORD = 'my_database_password'
-MYSQL_HOST = 'localhost'
-MYSQL_PORT = '3306'
-MYSQL_DATABASE = 'my_database_name'
+# For Production Configs
+##########################
+# MYSQL_USERNAME = 'my_username'
+# MYSQL_PASSWORD = 'my_database_password'
+# MYSQL_HOST = 'localhost'
+# MYSQL_PORT = '3306'
+# MYSQL_DATABASE = 'my_database_name'
 
-DEBUG = True
+ENVIRONMENT = 'development'
 
 SECRET_KEY = 'REPLACE WITH A UNIQUE STRING FOR YOUR SERVER'
