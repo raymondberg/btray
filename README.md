@@ -11,6 +11,13 @@ Follow this by setting up the database `python db.py install`. If you want to se
 
 Now you're ready to run the app! Just run `python run.py` to start the Flask server.
 
+## Databases
+
+The app is configured to use sqlite in dev for portability, but to install with mysql in prod just add the following to your requirements file and uncomment the MySQL settings.
+```
+MySQL-python==1.2.5
+```
+
 # CAUTION
 
 This project is intended to be used at ones own risk. The author(s) accept no responsibility should you be so foolish as to turn this product on somewhere.
