@@ -5,8 +5,18 @@ from random import sample as sample
 import sys
 from getpass import getpass
 
+
+VALID_COMMANDS = [
+    "install",
+    "reset",
+    "drop",
+    "adduser",
+    "generate",
+    "resetpw",
+]
+
 def usage_and_quit():
-    print "Usage: python db.py [install | reset | drop | adduser | generate]"
+    print "Usage: python db.py [{}]".format(" | ".join(VALID_COMMANDS))
     exit()
 
 if len(sys.argv) != 2:
@@ -15,7 +25,7 @@ if len(sys.argv) != 2:
 command = sys.argv[1]
 print "Received command: %s" % command
 
-if command not in ["install", "reset","drop","adduser", "generate"]:
+if command not in VALID_COMMANDS:
     usage_and_quit()
 
 if command in ["reset","drop"]:
@@ -31,6 +41,10 @@ if command == "adduser":
     email = raw_input("Email: ")
     password = getpass("Password: ")
     db.session.add(User(username,email,password))
+
+if command == "resetpw":
+    username = raw_input("Username: ")
+    db.session.query(User).filter(User.username == username).update({'password': getpass("Password: ")})
 
 if command == "generate":
     if app.config["ENVIRONMENT"] == "production":
