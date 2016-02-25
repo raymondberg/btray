@@ -29,6 +29,11 @@ class WebhookConfig(db.Model):
         self.notes = notes
         self.unique_id = self._generate_unique_id()
 
+    def clear(self):
+        for response in self.responses:
+            db.session.delete(response)
+        db.session.commit()
+
     def parse_webhook_response(self, raw, signature, process_only=False):
         try:
             webhook = None

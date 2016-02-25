@@ -123,3 +123,12 @@ class WebhookConfigDeleteForm(Form):
 
         self.url_config_id = kwargs['webhook_config_id']
         self.webhook_config = WebhookConfig.get(self.url_config_id, kwargs['user'])
+
+class WebhookConfigClearForm(Form):
+    webhook_config_id = HiddenField('WebhookConfigID', [validators.Required()])
+
+    def __init__(self, *args, **kwargs):
+        Form.__init__(self, *args, **kwargs)
+
+        self.url_config_id = kwargs['webhook_config_id']
+        self.webhook_config = WebhookConfig.get(self.url_config_id, kwargs['user'])

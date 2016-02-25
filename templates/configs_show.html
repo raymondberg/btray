@@ -1,18 +1,20 @@
 {% extends 'app_authenticated.html' %}
 {% block title %}Webhook Debugger{% endblock %}
 {% block header %}
+<form method="post" action="/configs/{{ clear_form.url_config_id }}/clear">
+  {{ clear_form.csrf_token }}
+  {{ clear_form.webhook_config_id }}
   Webhook Calls : 
   {{ config.name }}
-  <a style="padding-left:25px" onclick="alert('Coming Soon!');">
-    <button type="button" class="btn btn-warning">
-      Clear
-    </button>
-  </a>
+  <button type="button" class="btn btn-warning" onclick="$('form').submit()">
+    Clear
+  </button>
   <a style="padding-left:5px" href='{{ url_for('configs_delete', webhook_config_id=config.webhook_config_id) }}'>
     <button type="button" class="btn btn-danger">
       Delete
     </button>
   </a>
+</form>
 {% endblock %}
 {% block content %}
     <style>

@@ -3,7 +3,10 @@ from flask.ext.login import login_required, login_user, logout_user, current_use
 
 from btray import app, db
 from btray.models import WebhookConfig
-from btray.forms import LoginForm, WebhookConfigForm, WebhookConfigDeleteForm
+from btray.forms import LoginForm
+from btray.forms import WebhookConfigForm
+from btray.forms import WebhookConfigDeleteForm
+from btray.forms import WebhookConfigClearForm
 
 
 ## Pre Handlers
@@ -70,9 +73,17 @@ def configs_list():
 @login_required
 def configs_show(webhook_config_id):
     config = WebhookConfig.get(webhook_config_id, current_user)
+    form = WebhookConfigDeleteForm(
+        webhook_config_id=webhook_config_id,
+        user=current_user
+    )
     if config is None:
         return Response(status=404)
-    return render_template('configs_show.html', config=config)
+    return render_template(
+        'configs_show.html',
+        config=config,
+        clear_form=form
+    )
 
 @app.route('/configs/new', methods=['POST','GET'])
 @login_required
@@ -84,6 +95,17 @@ def configs_new():
             webhook_config_unique_id=form.webhook_config.unique_id
         ))
     return render_template('configs_new.html', form=form)
+
+@app.route('/configs/<int:webhook_config_id>/clear', methods=['POST'])
+@login_required
+def configs_clear(webhook_config_id):
+    form = WebhookConfigClearForm(
+        webhook_config_id=webhook_config_id,
+        user=current_user
+    )
+    if form.validate_on_submit():
+        form.webhook_config.clear()
+    return redirect(url_for('configs_show', webhook_config_id=webhook_config_id))
 
 @app.route('/configs/<int:webhook_config_id>/delete', methods=['POST','GET'])
 @login_required
