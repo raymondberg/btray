@@ -81,31 +81,4 @@
     <div class="alert alert-warning"><p>Well that's a fine how-dya-do...No webhook calls! You should try generating a few in your Braintree control panel.</p><p>The best way to start is to "Check URL" on your webhook configuration. That should send a test webhook!</p></div>
     {% endif %}
     </div>
-
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
-  <script>
-$(function() {
-
-    var $sidebar   = $("#table_of_contents"),
-        $window    = $(window),
-        offset     = $sidebar.offset(),
-        topPadding = 15;
-
-    $window.scroll(function() {
-        if ($window.scrollTop() > offset.top) {
-            $sidebar.stop().animate({
-                marginTop: $window.scrollTop() - offset.top + topPadding
-            });
-        } else {
-            $sidebar.stop().animate({
-                marginTop: 0
-            });
-        }
-    });
-});
-  </script>
 {% endblock %}
