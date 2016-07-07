@@ -1,10 +1,8 @@
 {% extends 'app_authenticated.html' %}
 {% block title %} Webhook Configs {% endblock %}
 {% block header %} Current Webhook Endpoints
-<a style="padding-left:25px" href="/configs/new">
-  <button type="button" class="btn btn-primary" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    New Endpoint
-  </button>
+<a style="margin-left:25px" href="/configs/new" class="btn btn-primary">
+  New Endpoint
 </a>
 {% endblock %}
 
@@ -38,4 +36,3 @@
     <p>Hmmm...it doesn't look like you've set up any webhook configurations yet. Why not <a href="{{url_for('configs_new')}}">give it a shot?</a></p>
   {% endif %}
 {% endblock %}
-
