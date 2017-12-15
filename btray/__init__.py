@@ -12,6 +12,7 @@ app = Flask(__name__, template_folder='../templates')
 
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
+app.secret_key = os.environ['SECRET_KEY']
 
 login_manager = LoginManager()
 login_manager.init_app(app)
