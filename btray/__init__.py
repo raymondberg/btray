@@ -1,4 +1,6 @@
 import os
+import sys
+import logging
 
 from flask import Flask
 from flask.ext.login import LoginManager
@@ -7,6 +9,9 @@ from sqlalchemy_utils import PasswordType
 from flask_sqlalchemy import orm
 
 app = Flask(__name__, template_folder='../templates')
+
+app.logger.addHandler(logging.StreamHandler(sys.stdout))
+app.logger.setLevel(logging.ERROR)
 
 login_manager = LoginManager()
 login_manager.init_app(app)
