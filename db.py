@@ -37,13 +37,13 @@ if command in ["reset","install"]:
     print("Database initialized")
 
 if command == "adduser":
-    username = raw_input("Username: ")
-    email = raw_input("Email: ")
+    username = input("Username: ")
+    email = input("Email: ")
     password = getpass("Password: ")
     db.session.add(User(username,email,password))
 
 if command == "resetpw":
-    username = raw_input("Username: ")
+    username = input("Username: ")
     db.session.query(User).filter(User.username == username).update({'password': getpass("Password: ")})
 
 if command == "generate":
