@@ -13,14 +13,15 @@ app = Flask(__name__, template_folder='../templates')
 app.logger.addHandler(logging.StreamHandler(sys.stdout))
 app.logger.setLevel(logging.ERROR)
 app.secret_key = os.environ['SECRET_KEY']
+app.config['ENVIRONMENT'] = os.environ['ENVIRONMENT']
 
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-if os.environ['ENVIRONMENT'] == 'production':
-    os.environ['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-elif os.environ['ENVIRONMENT'] == 'development':
-    os.environ['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///development.sqlite'
+if app.config['ENVIRONMENT'] == 'production':
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+elif app.config['ENVIRONMENT'] == 'development':
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///development.sqlite'
 
 
 db = SQLAlchemy(app)
