@@ -16,14 +16,14 @@ VALID_COMMANDS = [
 ]
 
 def usage_and_quit():
-    print "Usage: python db.py [{}]".format(" | ".join(VALID_COMMANDS))
+    print("Usage: python db.py [{}]".format(" | ".join(VALID_COMMANDS)))
     exit()
 
 if len(sys.argv) != 2:
     usage_and_quit()
 
 command = sys.argv[1]
-print "Received command: %s" % command
+print("Received command: %s" % command)
 
 if command not in VALID_COMMANDS:
     usage_and_quit()
@@ -37,13 +37,13 @@ if command in ["reset","install"]:
     print("Database initialized")
 
 if command == "adduser":
-    username = raw_input("Username: ")
-    email = raw_input("Email: ")
+    username = input("Username: ")
+    email = input("Email: ")
     password = getpass("Password: ")
     db.session.add(User(username,email,password))
 
 if command == "resetpw":
-    username = raw_input("Username: ")
+    username = input("Username: ")
     db.session.query(User).filter(User.username == username).update({'password': getpass("Password: ")})
 
 if command == "generate":
