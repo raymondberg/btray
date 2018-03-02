@@ -6,6 +6,9 @@ __pycache__/
 # C extensions
 *.so
 
+# Docker env
+docker.env
+
 # Data Storage
 *.sqlite
 

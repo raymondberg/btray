@@ -18,9 +18,9 @@ app.config['ENVIRONMENT'] = os.environ['ENVIRONMENT']
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-if app.config['ENVIRONMENT'] == 'production':
+if 'DATABASE_URL' in os.environ:
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
-elif app.config['ENVIRONMENT'] == 'development':
+else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///development.sqlite'
 
 

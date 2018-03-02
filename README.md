@@ -18,6 +18,28 @@ The app is configured to use sqlite in dev for portability, but to install with 
 MySQL-python==1.2.5
 ```
 
+## Developing Locally
+
+To get setup run:
+
+```
+cp docker.env.sample docker.env
+
+# Before you go forward, update the docker.env POSTGRES_PASSWORD and SECRET_KEY
+
+docker-compose build
+docker-compose up
+docker exec -it webhooket-db psql -U postgres -c "create database webhooket;"
+docker exec -it webhooket python db.py install
+docker exec -it webhooket python db.py adduser
+```
+
+To open a shell for testing or other purposes, run this:
+
+```
+docker exec -it webhooket bash
+```
+
 # CAUTION
 
 This project is intended to be used at ones own risk. The author(s) accept no responsibility should you be so foolish as to turn this product on somewhere.
