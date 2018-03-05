@@ -2,6 +2,16 @@
 {% block title %} Webhook Configs {% endblock %}
 {% block content %}
 
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for message in messages %}
+      <li>{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 <form method="post" action="/login/">
     {{ form.csrf_token }}
     <div>{{ form.username.label }}: {{ form.username(class="css_class") }}</div>
@@ -15,5 +25,6 @@
     {% endif %}
     <div>{{ form.submit.label }}: {{ form.submit() }}</div>
 </form>
+<button type="button" onclick="location.href='/signup/'">Sign Up!</button>
 {% endblock %}
 

@@ -36,6 +36,11 @@ def login():
         return redirect(url_for('configs_list'))
     return render_template('login.html', form=form)
 
+@app.route('/signup/', methods=['GET'])
+def signup():
+    flash("welcome to the sign up page")
+    return render_template('signup.html')
+
 @app.route("/logout/")
 @login_required
 def logout():
