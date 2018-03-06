@@ -2,8 +2,10 @@ from flask import render_template, request, redirect, url_for, Response, flash
 from flask.ext.login import login_required, login_user, logout_user, current_user
 
 from btray import app, db
+from btray.models import User
 from btray.models import WebhookConfig
 from btray.forms import LoginForm
+from btray.forms import SignUpForm
 from btray.forms import WebhookConfigForm
 from btray.forms import WebhookConfigDeleteForm
 from btray.forms import WebhookConfigClearForm
@@ -36,10 +38,16 @@ def login():
         return redirect(url_for('configs_list'))
     return render_template('login.html', form=form)
 
-@app.route('/signup/', methods=['GET'])
+@app.route('/signup/', methods=['GET', 'POST'])
 def signup():
-    flash("welcome to the sign up page")
-    return render_template('signup.html')
+    form = SignUpForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User(form.username.data, form.email.data, form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Successfully signed up! Now login!')
+        return redirect(url_for('login'))
+    return render_template('signup.html', form=form)
 
 @app.route("/logout/")
 @login_required

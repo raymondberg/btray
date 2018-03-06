@@ -34,6 +34,23 @@ class LoginForm(Form):
         self.user = user
         return True
 
+class SignUpForm(Form):
+    username = TextField('Username', [validators.Required()])
+    password = PasswordField('Password', [validators.Required()])
+    email = TextField('Email', [validators.DataRequired(), validators.Email()])
+    submit = SubmitField('Sign Up')
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+
+        user = User.query.filter_by(username=self.username.data).first()
+
+        if user is not None:
+            self.username.errors.append('username already taken')
+            return False
+
+        return True
 
 class WebhookConfigForm(Form):
     name = TextField(
