@@ -18,8 +18,8 @@ app.config['ENVIRONMENT'] = os.environ['ENVIRONMENT']
 login_manager = LoginManager()
 login_manager.init_app(app)
 
-if 'DATABASE_URL' in os.environ:
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+if 'POSTGRES_USER' in os.environ:
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DATABASE}'.format(**os.environ)
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///development.sqlite'
 
