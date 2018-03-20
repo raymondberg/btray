@@ -40,6 +40,12 @@ To open a shell for testing or other purposes, run this:
 docker exec -it webhooket bash
 ```
 
+For access to database:
+
+```
+docker exec -it webhooket-db psql -U postgres -d webhooket
+```
+
 # CAUTION
 
 This project is intended to be used at ones own risk. The author(s) accept no responsibility should you be so foolish as to turn this product on somewhere.
