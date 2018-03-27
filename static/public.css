@@ -1,0 +1,23 @@
+.whbtn {
+  width: 100%;
+  background-color: #5bc691;
+}
+
+.whjumbotron {
+  background-color: #383d44;
+}
+
+.whpanel {
+  background-color: #383d44;
+}
+.divider {
+  padding: 5px;
+}
+.whform {
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    background-clip: padding-box;
+}
+body {
+  color: white;
+}
