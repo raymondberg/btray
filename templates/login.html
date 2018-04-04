@@ -11,18 +11,15 @@
 {% endwith %}
 
 <div class="row">
-  <div class="container col-xs-6 col-xs-offset-3">
+  <div class="col-xs-4 col-xs-offset-4">
     <br/>
-    <div class="panel panel-default whpanel">
+    <div class="pdsize panel panel-default whpanel">
       <div class="panel-body">
-        <div class="jumbotron whjumbotron">
           <h1>Webhooket</h1>
           <p>Webhooket is an application which allows you to sign up for a Braintree Webhook endpoint-- already equipped with the parsing code necessary to successfully trigger a response.</p>
-        </div>
         <form class="form-horizontal" method="post" action="/login/">
 
           {{ form.csrf_token }}
-
           <div class="form-group">
             <label class="col-sm-2 control-label" for="username">
               {{ form.username.label }}
@@ -41,6 +38,8 @@
             {% endfor %}
           </ul>
           {% endif %}
+
+          <br>
 
           <div class="form-group">
             <label class="col-sm-2 control-label" for="password">
@@ -61,14 +60,16 @@
           </ul>
           {% endif %}
 
+          <br>
+
             <div class="form-group">
               <div class="col-xs-6">
             {{ form.submit(class="btn whbtn ") }}
               </div>
               <div class="col-xs-6">
-          <button type="button" class="btn whbtn btn-default " onclick="location.href='/signup/'">Sign Up!</button>
+          <button type="button" class="btn whbtn" onclick="location.href='/signup/'">Sign Up!</button>
               </div>
-          </div>
+              <br>
         </form>
       </div>
     </div>

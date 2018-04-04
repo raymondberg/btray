@@ -23,6 +23,11 @@
     background-clip: padding-box;
     font-family: 'Hind', sans-serif;
 }
+
+.whkimg {
+  width: 50%;
+}
+
 body {
   color: white;
 }
