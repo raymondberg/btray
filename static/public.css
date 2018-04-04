@@ -1,14 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Hind');
 .whbtn {
   width: 100%;
+  font-family: 'Hind', sans-serif;
   background-color: #5bc691;
 }
 
-.whjumbotron {
-  background-color: #383d44;
+.pdsize {
+  padding-right: 60px;
+  padding-left: 60px;
 }
 
 .whpanel {
   background-color: #383d44;
+  font-family: 'Hind', sans-serif;
 }
 .divider {
   padding: 5px;
@@ -17,7 +21,23 @@
     padding: .375rem .75rem;
     font-size: 1rem;
     background-clip: padding-box;
+    font-family: 'Hind', sans-serif;
 }
 body {
   color: white;
+}
+
+h1 {
+font-family: 'Hind', sans-serif;
+font-size: 40px;
+}
+
+p {
+  font-size: 20px;
+  font-family: 'Hind', sans-serif;
+}
+
+label {
+  font-size: 20px;
+  font-family: 'Hind', sans-serif;
 }
