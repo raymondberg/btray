@@ -9,9 +9,9 @@
 		{%endfor %}
 	{% endif %}
 {% endwith %}
-
+<div class="container-fluid">
 <div class="row">
-  <div class="col-xs-4 col-xs-offset-4">
+  <div class="col-md-6 col-md-offset-3">
     <br/>
     <div class="pdsize panel panel-default whpanel">
       <div class="panel-body">
@@ -24,7 +24,7 @@
             <label class="col-sm-2 control-label" for="username">
               {{ form.username.label }}
             </label>
-            <div class="col-md-10 col-sm-12">
+            <div class="col-sm-10 col-xs-12">
               {{ form.username(class="form-control")}}
             </div>
           </div>
@@ -45,7 +45,7 @@
             <label class="col-sm-2 control-label" for="password">
               {{ form.password.label }}
             </label>
-            <div class="col-md-10 col-sm-12">
+            <div class="col-sm-10 col-xs-12">
               {{ form.password(class="form-control") }}
             </div>
           </div>
@@ -63,15 +63,17 @@
           <br>
 
             <div class="form-group">
-              <div class="col-xs-6">
-            {{ form.submit(class="btn whbtn ") }}
+              <div class="col-lg-12">
+            {{ form.submit(class="btn whbtn btn-lg btn-block ") }}
               </div>
-              <div class="col-xs-6">
-          <button type="button" class="btn whbtn" onclick="location.href='/signup/'">Sign Up!</button>
-              </div>
+
               <br>
         </form>
       </div>
+    </div>
+  </div>
+    <div class="col-s-6 text-center">
+      <a href="/signup/">Do you not have a login?...Sign Up!</a>
     </div>
   </div>
 </div>
