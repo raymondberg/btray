@@ -13,6 +13,8 @@
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
+
+<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='public.css') }}">
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -23,7 +25,6 @@
         #table_of_contents {float:right; width:25%; margin:10px 10px 0 0; background-color:#efe;}
         .webhook_container {width:70%; margin:10px 1% 10px 3%; background-color:#eef; padding: 10px;}
     </style>
-
   </head>
   <body>
     {% block content %}{% endblock %}
