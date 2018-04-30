@@ -18,3 +18,5 @@ services:
       - db
     env_file:
       - ./docker.env
+    environment:
+      - FLASK_DEBUG=1

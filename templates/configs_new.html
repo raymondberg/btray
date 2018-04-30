@@ -1,8 +1,7 @@
 {% extends 'app_authenticated.html' %}
 {% block title %} Webhook Endpoints {% endblock %}
 {% block header %} New {% endblock %}
-{% block content %}
-<form method="post" action="/configs/new">
+{% block content %}<form method="post" action="/configs/new">
     {{ form.csrf_token }}
     <table>
     {% for field in form %}

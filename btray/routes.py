@@ -10,7 +10,6 @@ from btray.forms import WebhookConfigForm
 from btray.forms import WebhookConfigDeleteForm
 from btray.forms import WebhookConfigClearForm
 
-
 ## Pre Handlers
 ####################################################################
 @app.before_request

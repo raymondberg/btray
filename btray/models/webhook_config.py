@@ -6,6 +6,9 @@ import braintree
 from btray import db
 from btray.models.webhook_response import WebhookResponse
 
+def safe_unicode(original):
+    return u"{}".format(original)
+
 class WebhookConfig(db.Model):
     webhook_config_id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.user_id'))
@@ -48,12 +51,15 @@ class WebhookConfig(db.Model):
             logging.error(error)
 
     def _generate_unique_id(self):
-        return hashlib.md5('::'.join([
+        return hashlib.md5(self._unique_string_token()).hexdigest()
+
+    def _unique_string_token(self):
+        return "{}{}{}{}".format(
             self.name,
             self.bt_merchant_id,
             self.bt_public_key,
-            self.bt_private_key,
-        ])).hexdigest()
+            self.bt_private_key
+        ).encode("utf-8")
 
     def _get_webhook_response(self, raw, signature):
         webhook_gateway = braintree.braintree_gateway.BraintreeGateway(
