@@ -54,7 +54,7 @@ class SignUpForm(Form):
 
 class WebhookConfigForm(Form):
     name = TextField(
-        'Config Name',
+        'Webhook Name',
         [
             validators.Required(),
             validators.Regexp(re.compile('^[a-zA-Z0-9./_ -]+$'),
@@ -62,7 +62,7 @@ class WebhookConfigForm(Form):
         ]
     )
     notes = TextAreaField(
-        'Notes',
+        'Webhook Description',
         [
             validators.Required(),
             validators.Regexp(re.compile('^[a-zA-Z0-9./_ -]+$'),
@@ -100,7 +100,8 @@ class WebhookConfigForm(Form):
     )
 
     is_mine = BooleanField(
-        'I affirm that I have personally disabled every single permission for these credentials (e.g. Webhook Only Role)',
+        'I have personally disabled every single permission' + '<br>' +
+        'for these credentials(e.g. Webhook Only Role)',
         [
             validators.Required(),
             validators.AnyOf([True]),

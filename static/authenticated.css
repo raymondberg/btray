@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Hind');
+
+.label_class {
+  font-family: 'Hind', sans-serif;
+  margin-right: 20px;
+  color: black important!;
+}
+
+h1 {
+font-family: 'Hind', sans-serif;
+font-size: 40px;
+}
+

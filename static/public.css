@@ -5,6 +5,12 @@
   background-color: #5bc691;
 }
 
+.label_class {
+  font-family: 'Hind', sans-serif;
+  margin-right: 20px;
+  color: black important!;
+}
+
 .pdsize {
   padding-right: 60px;
   padding-left: 60px;

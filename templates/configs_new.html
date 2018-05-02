@@ -7,7 +7,7 @@
     {% for field in form %}
       {% if field.name != 'csrf_token' %}
       <tr>
-        <td>{{ field.label }}</td><td>{{ field(class="css_class") }}
+        <td>{{ field.label(class="label_class") }}</td><td>{{ field(class="css_class") }}
         </td>
       </tr>
       <tr>
