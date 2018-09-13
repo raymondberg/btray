@@ -23,7 +23,7 @@ if len(sys.argv) != 2:
     usage_and_quit()
 
 command = sys.argv[1]
-print("Received command: %s" % command)
+print "Received command: {}".format(command)
 
 if command not in VALID_COMMANDS:
     usage_and_quit()
@@ -62,9 +62,9 @@ if command == "generate":
         webhook_config = WebhookConfig(
             name=" ".join(sample(words, 4)),
             notes="\n".join(sample(words,6)),
-            bt_merchant_id="abc%s" % i,
-            bt_public_key="def%s" % i,
-            bt_private_key="ghi%s" % i
+            bt_merchant_id="abc{}".format(i),
+            bt_public_key="def{}".format(i),
+            bt_private_key="ghi{}".format(i)
         )
         user.webhook_configs.append(webhook_config)
 
@@ -74,4 +74,3 @@ if command == "generate":
 
 db.session.commit()
 print("Committed")
-
